@@ -30,9 +30,10 @@ public class ChangeString {
                     flag = true;
                     continue;
                 }
-                sum = PROBEL.repeat(tabCount) + sum + m + buk;
+                sum = m + sum;
             }
-            newArray.add(sum);
+            String value = PROBEL.repeat(flag ? tabCount + 1 : tabCount) + sum + buk;
+            newArray.add(value);
         }
         Collections.reverse(newArray);
         return newArray;
