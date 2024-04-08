@@ -8,7 +8,5 @@ public class Main {
         for (String underStr : pepa.toTree()) {
             System.out.println(underStr);
         }
-
-
     }
 }

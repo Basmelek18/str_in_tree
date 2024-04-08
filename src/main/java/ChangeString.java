@@ -1,34 +1,40 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class ChangeString {
-    private final String PROBEL = "----";
+    private final String PROBEL = "|   ";
     private final String inString;
     public ChangeString(String inString){
         this.inString = inString;
     }
 
-    public ArrayList<String> toTree(){
-        var splitedStrLine = inString.split(" ");
-        ArrayList<String> newArray = new ArrayList<>();
-        int tabCount = 0;
+    public List<String> toTree(){
+        List<String> splitedStrLine = new ArrayList<>(List.of(inString.split(" ")));
+        List<String> newArray = new ArrayList<>();
+        int tabCount = -1;
+        var flag = false;
         String sum;
+        Collections.reverse(splitedStrLine);
         for (String n : splitedStrLine){
-            var splitStr = n.split("");
+            var splitStr = new ArrayList<>(List.of(n.split("")));
+            Collections.reverse(splitStr);
             sum = "";
+            String buk = flag ? "--+" : "";
+            flag = false;
             for (String m : splitStr){
-                if (m.equals("(")) {
+                if (m.equals(")")) {
                     tabCount++;
                     continue;
                 }
-                if (m.equals(")")){
+                if (m.equals("(")) {
                     tabCount--;
+                    flag = true;
                     continue;
                 }
-                sum = sum + m;
+                sum = PROBEL.repeat(tabCount) + sum + m + buk;
             }
-            sum = PROBEL.repeat(tabCount) + sum;
             newArray.add(sum);
         }
+        Collections.reverse(newArray);
         return newArray;
     }
 }
