@@ -5,7 +5,7 @@ public class Main {
         Scanner in = new Scanner(System.in);
         String inString = in.nextLine();
         var pepa = new ChangeString(inString);
-        for (String underStr : pepa.toTree()) {
+        for (Object underStr : pepa.toAr()) {
             System.out.println(underStr);
         }
     }
