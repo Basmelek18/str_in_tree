@@ -1,3 +1,4 @@
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -7,7 +8,10 @@ public class Main {
         String inString = in.nextLine();
         var pepa = new ChangeString();
         List<Object> pupa = pepa.toAr(inString);
-        System.out.println(pepa.toTree((List<?>) pupa.get(0)));
-
+        List<String> lupa = pepa.toTree((List<?>) pupa.get(0));
+        Collections.reverse(lupa);
+        for (String any : lupa) {
+            System.out.println(any);
+        }
     }
 }

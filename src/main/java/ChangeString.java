@@ -1,13 +1,10 @@
 import java.util.*;
 
 public class ChangeString {
-    private final String PROBEL = " ";
     private int shiftCount = 0;
     private boolean flag = false;
+    private String shiftStr = "";
     private List<String> result2 = new ArrayList<>();
-//    public ChangeString(String inString){
-//        this.inString = inString;
-//    }
 
     public static List<Object> toAr(String inString){
         List<String> splitedStrLine = new ArrayList<>(List.of(inString.split("")));
@@ -44,7 +41,7 @@ public class ChangeString {
         return result;
     }
 
-    public List<?> toTree(List<?> a) {
+    public List<String> toTree(List<?> a) {
         int sumPrevLength = 0;
         int sumNextLength = 0;
         int sumL;
@@ -52,10 +49,30 @@ public class ChangeString {
         for (int i = a.size() - 1; i >= 0; i--) {
             String sum = "";
             if (a.get(i) instanceof List<?>) {
-                shiftCount++;
                 List<?> b = (List<?>) a.get(i);
-                this.toTree(b);
-                shiftCount--;
+                if (i < a.size() - 1) {
+                        if (sumPrevLength != 0) {
+                            shiftCount = sumPrevLength + 1;
+                        }
+                        else {
+                            shiftCount = ((String) a.get(i - 1)).length() + 1;
+                        }
+                    shiftStr = shiftStr + "|" + " ".repeat(shiftCount);
+                    this.toTree(b);
+                    if (sumPrevLength != 0) {
+                        shiftStr = shiftStr.substring(0, shiftStr.length() - (sumPrevLength + 2));
+                    }
+                    else {
+                        shiftStr = shiftStr.substring(0, shiftStr.length() - (((String) a.get(i - 1)).length() + 2));
+                    }
+                }
+                else {
+                    shiftCount = ((String) a.get(i - 1)).length() + 1;
+                    shiftStr = shiftStr + " ".repeat(shiftCount + 1);
+                    //                    shiftCount = 0;
+                    this.toTree(b);
+                    shiftStr = shiftStr.substring(0, shiftStr.length() - (((String) a.get(i - 1)).length() + 2));
+                }
                 flag = true;
                 continue;
             }
@@ -63,19 +80,19 @@ public class ChangeString {
                 sum = sum + a.get(i);
                 if (sumMax) {
                     sumPrevLength = sum.length();
-                    sum = " ".repeat(shiftCount) + sum + "--+";
+                    sum = shiftStr + sum + "--+";
                     sumMax = false;
                 }
                 else {
                     sumNextLength = sum.length();
                     sumL = sumPrevLength - sumNextLength;
-                    sum = " ".repeat(shiftCount) + sum + "-".repeat(sumL) + "--+";
+                    sum = shiftStr + sum + "-".repeat(sumL) + "--+";
                 }
                 flag = false;
                 result2.add(sum);
                 continue;
             }
-            sum = " ".repeat(shiftCount) + a.get(i);
+            sum = shiftStr + a.get(i);
             result2.add(sum);
         }
         return result2;
