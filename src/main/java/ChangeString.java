@@ -13,6 +13,7 @@ public class ChangeString {
         stack.add(result);
         String sum = "";
 
+
         for (String c : splitedStrLine){
             if (c.equals("(")) {
                 List<Object> newArray = new ArrayList<>();
@@ -43,7 +44,7 @@ public class ChangeString {
 
     public List<String> toTree(List<?> a) {
         int sumPrevLength = 0;
-        int sumNextLength = 0;
+        int sumNextLength;
         int sumL;
         boolean sumMax = true;
         for (int i = a.size() - 1; i >= 0; i--) {
@@ -69,7 +70,6 @@ public class ChangeString {
                 else {
                     shiftCount = ((String) a.get(i - 1)).length() + 1;
                     shiftStr = shiftStr + " ".repeat(shiftCount + 1);
-                    //                    shiftCount = 0;
                     this.toTree(b);
                     shiftStr = shiftStr.substring(0, shiftStr.length() - (((String) a.get(i - 1)).length() + 2));
                 }
