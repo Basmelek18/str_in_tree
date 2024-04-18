@@ -16,12 +16,15 @@ public class Main {
         Scanner in = new Scanner(System.in);
         String inString = in.nextLine();
         List<OurNumber> result = CreateNumObj.toNumObj(inString);
+        result = Shifter.toShift(result);
         System.out.println(result);
         for (OurNumber o : result) {
             System.out.println(o);
             System.out.println(o.getId());
             System.out.println(o.getNumber());
             System.out.println(o.getLevel());
+            System.out.println(o.getPrevState());
+            System.out.println(o.getShiftAfter());
             System.out.println("");
         }
     }

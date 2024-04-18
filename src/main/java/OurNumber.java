@@ -14,11 +14,9 @@ public class OurNumber {
         this.id = id;
         this.number = number;
         this.level = level;
-        this.prevState = 0;
-//        this.hasNextLevel = false;
-//        this.hasPrevLevelAfter = false;
-//        this.shiftBefore = "";
-//        this.shiftAfter = "";
+        this.prevState = -1;
+        this.shiftBefore = "";
+        this.shiftAfter = "";
     }
 
     public Integer getId() {
@@ -32,11 +30,29 @@ public class OurNumber {
     public Integer getLevel() {
         return level;
     }
+
     public void setPrevState(Integer prevState) {
         this.prevState = prevState;
     }
+
     public Integer getPrevState() {
         return prevState;
+    }
+
+    public void setShiftBefore(String shiftBefore) {
+        this.shiftBefore = shiftBefore;
+    }
+
+    public String getShiftBefore() {
+        return shiftBefore;
+    }
+
+    public void setShiftAfter(String shiftAfter) {
+        this.shiftAfter = shiftAfter;
+    }
+
+    public String getShiftAfter() {
+        return shiftAfter;
     }
 
 }
