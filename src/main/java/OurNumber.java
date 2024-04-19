@@ -5,8 +5,6 @@ public class OurNumber {
     private final Integer level;
     private Integer prevState;
     private Integer nextState;
-    private Boolean hasNextLevel;
-    private Boolean hasPrevLevelAfter;
     private String shiftBefore;
     private String shiftAfter;
 
@@ -15,6 +13,7 @@ public class OurNumber {
         this.number = number;
         this.level = level;
         this.prevState = -1;
+        this.nextState = -1;
         this.shiftBefore = "";
         this.shiftAfter = "";
     }
@@ -37,6 +36,14 @@ public class OurNumber {
 
     public Integer getPrevState() {
         return prevState;
+    }
+
+    public void setNextState(Integer nextState) {
+        this.nextState = nextState;
+    }
+
+    public Integer getNextState() {
+        return nextState;
     }
 
     public void setShiftBefore(String shiftBefore) {
